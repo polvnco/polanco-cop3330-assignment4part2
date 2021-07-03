@@ -2,17 +2,13 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="550.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucf.assignments.ToDoController">
    <Pane prefHeight="100.0" prefWidth="550.0" style="-fx-background-color: red;">
@@ -55,42 +51,32 @@
    </Pane>
    <Pane fx:id="pane" layoutX="-2.0" layoutY="109.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="596.0" prefWidth="552.0" style="-fx-background-color: grey;">
       <children>
-         <Label layoutX="14.0" layoutY="14.0" text="Saved ToDo Lists">
+         <ImageView fitHeight="205.0" fitWidth="214.0" layoutX="174.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@../../icons/logopo.png" />
+            </image>
+         </ImageView>
+         <Label layoutX="138.0" layoutY="564.0" text="Made with ♥ and tears by Christopher Polanco " />
+         <Text layoutX="85.0" layoutY="200.0" strokeType="OUTSIDE" strokeWidth="0.0" text="About This Terrible App" wrappingWidth="238.9088592529297">
             <font>
-               <Font name="Verdana Bold" size="36.0" />
+               <Font name="Times New Roman" size="16.0" />
             </font>
-         </Label>
-         <TableView layoutX="17.0" layoutY="97.0" prefHeight="485.0" prefWidth="441.0">
-           <columns>
-             <TableColumn prefWidth="102.0" text="Task" />
-             <TableColumn prefWidth="179.0" text="Task Description" />
-               <TableColumn prefWidth="76.0" text="Due Date" />
-               <TableColumn prefWidth="81.0" text="Complete?" />
-           </columns>
-         </TableView>
-         <MenuBar layoutX="14.0" layoutY="60.0" style="-fx-background-color: clear;">
-            <menus>
-               <Menu mnemonicParsing="false" text="File">
-                  <items>
-                     <MenuItem mnemonicParsing="false" text="Open" />
-                     <MenuItem mnemonicParsing="false" text="Save" />
-                     <MenuItem mnemonicParsing="false" text="Save As..." />
-                  </items>
-               </Menu>
-               <Menu mnemonicParsing="false" text="Edit">
-                  <items>
-                     <MenuItem mnemonicParsing="false" text="Copy" />
-                     <MenuItem mnemonicParsing="false" text="Cut" />
-                     <MenuItem mnemonicParsing="false" text="Paste" />
-                  </items>
-               </Menu>
-               <Menu mnemonicParsing="false" text="Help">
-                  <items>
-                     <MenuItem mnemonicParsing="false" text="There's actually no help" />
-                  </items>
-               </Menu>
-            </menus>
-         </MenuBar>
+         </Text>
+         <Text layoutX="85.0" layoutY="218.0" strokeType="OUTSIDE" strokeWidth="0.0" text="=================================" wrappingWidth="346.9088592529297">
+            <font>
+               <Font name="Times New Roman" size="16.0" />
+            </font>
+         </Text>
+         <Text layoutX="85.0" layoutY="236.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum vehicula dui vehicula placerat auctor. Morbi magna dui, iaculis id purus eget, blandit congue justo. Sed quis sagittis eros. Phasellus at accumsan neque, ac accumsan leo. Donec bibendum, nisl vitae mollis auctor, ex dui sollicitudin lectus, eu commodo leo eros ac mi. Quisque a turpis varius, venenatis diam eu, ullamcorper risus. Integer suscipit semper metus, sed iaculis tellus. Donec laoreet nibh sed porttitor pretium. Quisque interdum rhoncus dui, sed convallis enim tincidunt non. Mauris a urna eget tellus suscipit molestie non nec purus. Vivamus sagittis odio vel lorem vestibulum, non consectetur est bibendum. Nam efficitur quis tellus vel interdum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Morbi non ipsum porttitor, tristique nisl a, feugiat magna. Vestibulum vel vulputate sapien. Maecenas eleifend molestie quam in vulputate." wrappingWidth="403.9088592529297">
+            <font>
+               <Font name="Times New Roman" size="14.0" />
+            </font>
+         </Text>
+         <Text layoutX="85.0" layoutY="490.0" strokeType="OUTSIDE" strokeWidth="0.0" text="enjoy ;)" wrappingWidth="238.9088592529297">
+            <font>
+               <Font name="Times New Roman" size="16.0" />
+            </font>
+         </Text>
       </children>
    </Pane>
 </AnchorPane>
