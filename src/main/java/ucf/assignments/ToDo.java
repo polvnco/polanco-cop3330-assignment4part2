@@ -1,3 +1,7 @@
+/*
+ *  UCF COP3330 Summer 2021 Assignment 4 Solution
+ *  Copyright 2021 Christopher Polanco
+ */
 package ucf.assignments;
 
 import javafx.application.Application;
@@ -15,6 +19,9 @@ public class ToDo extends Application {
     @Override
     public void start(Stage stage) {
         try {
+
+            /* create scene for when building and running app, opens first scene specified */
+
             Parent root = FXMLLoader.load((Objects.requireNonNull(getClass().getResource("ToDo.fxml"))));
             Scene scene = new Scene(root);
             stage.setScene(scene);

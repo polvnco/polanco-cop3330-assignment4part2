@@ -4,22 +4,32 @@
 class ToDo{
     main()
     start()
-    createList()
-    openNewList()
-    viewList()
-    goBack()
-    selectList()
-    dueDate()
 }
 
-class ToDo_Controller{
-    editDate()
-    editDescription()
+class ToDoController{
+    + getTask()
+    + getTaskDescription()
+    + isCompletion()
+    + getTaskDate()
+    + addButtonClicked()
+    + sceneButtonClicked1()
+    + sceneButtonClicked2()
+    + sceneButtonClicked3()
+    + sceneButtonClicked4()
 
+    - root : Parent
+    - scene : Scene
+    - stage : Stage
+    + pane : Pane
+    --
+    + switchToToDoScene (event : ActionEvent) : void
+    + switchToAllListScene (event : ActionEvent) : void
+    + switchToSettings (event : ActionEvent) : void
+    + switchToAbout (event : ActionEvent) : void
 
 }
 
 javafx.Application <|-- ToDo
 
-ToDo -- ToDo_Controller
+ToDo -- ToDoController
 @enduml
