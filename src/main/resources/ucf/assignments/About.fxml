@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -59,24 +60,20 @@
          <Label layoutX="138.0" layoutY="564.0" text="Made with ♥ and tears by Christopher Polanco " />
          <Text layoutX="85.0" layoutY="200.0" strokeType="OUTSIDE" strokeWidth="0.0" text="About This Terrible App" wrappingWidth="238.9088592529297">
             <font>
-               <Font name="Times New Roman" size="16.0" />
-            </font>
-         </Text>
-         <Text layoutX="85.0" layoutY="218.0" strokeType="OUTSIDE" strokeWidth="0.0" text="=================================" wrappingWidth="346.9088592529297">
-            <font>
-               <Font name="Times New Roman" size="16.0" />
+               <Font name="Verdana" size="16.0" />
             </font>
          </Text>
          <Text layoutX="85.0" layoutY="236.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum vehicula dui vehicula placerat auctor. Morbi magna dui, iaculis id purus eget, blandit congue justo. Sed quis sagittis eros. Phasellus at accumsan neque, ac accumsan leo. Donec bibendum, nisl vitae mollis auctor, ex dui sollicitudin lectus, eu commodo leo eros ac mi. Quisque a turpis varius, venenatis diam eu, ullamcorper risus. Integer suscipit semper metus, sed iaculis tellus. Donec laoreet nibh sed porttitor pretium. Quisque interdum rhoncus dui, sed convallis enim tincidunt non. Mauris a urna eget tellus suscipit molestie non nec purus. Vivamus sagittis odio vel lorem vestibulum, non consectetur est bibendum. Nam efficitur quis tellus vel interdum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Morbi non ipsum porttitor, tristique nisl a, feugiat magna. Vestibulum vel vulputate sapien. Maecenas eleifend molestie quam in vulputate." wrappingWidth="403.9088592529297">
             <font>
-               <Font name="Times New Roman" size="14.0" />
+               <Font name="Verdana" size="12.0" />
             </font>
          </Text>
          <Text layoutX="85.0" layoutY="490.0" strokeType="OUTSIDE" strokeWidth="0.0" text="enjoy ;)" wrappingWidth="238.9088592529297">
             <font>
-               <Font name="Times New Roman" size="16.0" />
+               <Font name="Verdana" size="14.0" />
             </font>
          </Text>
+         <Separator layoutX="17.0" layoutY="215.0" prefHeight="3.0" prefWidth="517.0" />
       </children>
    </Pane>
 </AnchorPane>

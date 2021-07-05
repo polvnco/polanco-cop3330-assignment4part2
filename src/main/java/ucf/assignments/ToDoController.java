@@ -71,7 +71,7 @@ public class ToDoController {
         this.completion = completion;
     }
 
-    // lines 60 - 89 are simply for getting the GUI buttons to work when creating GUI mockup with Scene Builder
+    // lines 77 - 126 are simply for getting the GUI buttons to work when creating GUI mockup with Scene Builder
     // ========================================================================================================
 
     public void switchToToDoScene(ActionEvent event) throws IOException {

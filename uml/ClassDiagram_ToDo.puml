@@ -2,21 +2,18 @@
 'https://plantuml.com/class-diagram
 
 class ToDo{
-    main()
-    start()
+    + main (args : String[]) : void
+    + start (stage : Stage) : void
 }
 
 class ToDoController{
-    + getTask()
-    + getTaskDescription()
-    + isCompletion()
-    + getTaskDate()
-    + addButtonClicked()
-    + sceneButtonClicked1()
-    + sceneButtonClicked2()
-    + sceneButtonClicked3()
-    + sceneButtonClicked4()
-
+    + getTask () : String
+    + setTask (task : String) : void
+    + getTaskDescription () : String
+    + setTaskDescription (taskDescription : String) : void
+    + isCompletion () : boolean
+    + getTaskDate () : String
+    + addButtonClicked ()
     - root : Parent
     - scene : Scene
     - stage : Stage
@@ -26,7 +23,10 @@ class ToDoController{
     + switchToAllListScene (event : ActionEvent) : void
     + switchToSettings (event : ActionEvent) : void
     + switchToAbout (event : ActionEvent) : void
-
+    + sceneButtonClicked1 (actionEvent : ActionEvent) : void
+    + sceneButtonClicked2 (actionEvent : ActionEvent) : void
+    + sceneButtonClicked3 (actionEvent : ActionEvent) : void
+    + sceneButtonClicked4 (actionEvent : ActionEvent) : void
 }
 
 javafx.Application <|-- ToDo
