@@ -16,6 +16,10 @@ import java.util.Objects;
 public class ToDo extends Application {
 
 
+
+
+
+
     @Override
     public void start(Stage stage) {
         try {
@@ -25,12 +29,16 @@ public class ToDo extends Application {
             Parent root = FXMLLoader.load((Objects.requireNonNull(getClass().getResource("ToDo.fxml"))));
             Scene scene = new Scene(root);
             stage.setScene(scene);
+            stage.setTitle("To-Do Something...");
             stage.show();
+
+
         } catch (IOException e) {
             e.printStackTrace();
         }
 
     }
+
 
     public static void main(String[] args) {
         launch(args);

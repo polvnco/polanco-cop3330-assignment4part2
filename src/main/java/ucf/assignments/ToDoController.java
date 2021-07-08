@@ -4,79 +4,56 @@
  */
 package ucf.assignments;
 
+import javafx.beans.property.ObjectProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
+import java.util.ResourceBundle;
 
-public class ToDoController {
+public class ToDoController implements Initializable {
     public Pane pane;
+    public TextField textFieldTask;
+    public TextField textFieldDescription;
+    public DatePicker datePickerField;
     private Stage stage;
     private Scene scene;
     private Parent root;
-    public String task;
-    public String taskDescription;
-    public String taskDate;
-    public boolean completion;
+    @FXML
+    private TableView<Task> tableView;
+    @FXML
+    private TableColumn<Task, String> taskColumn;
+    @FXML
+    private TableColumn<Task, String> taskDescriptionColumn;
+    @FXML
+    private TableColumn<Task, LocalDate> dueDateColumn;
 
-    // getters and setters generated for Junit5 test implementation
-    // ============================================================
-
-
-    public String getTask() {
-        // this function is meant to grab the string inputted into app
-        // the string will then be returned
-        return task;
+    private static ObjectProperty call(TableColumn.CellDataFeatures<Task, LocalDate> cellData) {
+        return cellData.getValue().dueDateProperty();
     }
 
-    public void setTask(String task) {
-        this.task = task;
-    }
-
-    public String getTaskDescription() {
-        // this function is meant to grab the string inputted into app
-        // the string will then be returned
-        return taskDescription;
-    }
-
-    public void setTaskDescription(String taskDescription) {
-        this.taskDescription = taskDescription;
-    }
-
-    public String getTaskDate() {
-        // this function is meant to grab the string inputted into app
-        // the string will then be returned
-        return taskDate;
-    }
-
-    public void setTaskDate(String taskDate) {
-        this.taskDate = taskDate;
-    }
-
-    public boolean isCompletion() {
-        // if string entered matches "y, yes, complete" set to true
-        // if string entered matches "n, no, not complete" set to false
-        // return boolean
-        return completion;
-    }
-
-    public void setCompletion(boolean completion) {
-        this.completion = completion;
-    }
 
     // lines 77 - 126 are simply for getting the GUI buttons to work when creating GUI mockup with Scene Builder
     // ========================================================================================================
 
     public void switchToToDoScene(ActionEvent event) throws IOException {
         root = FXMLLoader.load((Objects.requireNonNull(getClass().getResource("ToDo.fxml"))));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
@@ -84,14 +61,15 @@ public class ToDoController {
 
     public void switchToAllListScene(ActionEvent event) throws IOException {
         root = FXMLLoader.load((Objects.requireNonNull(getClass().getResource("AllList.fxml"))));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
+
     public void switchToSettingsScene(ActionEvent event) throws IOException {
         root = FXMLLoader.load((Objects.requireNonNull(getClass().getResource("Settings.fxml"))));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
@@ -99,30 +77,55 @@ public class ToDoController {
 
     public void switchToAboutScene(ActionEvent event) throws IOException {
         root = FXMLLoader.load((Objects.requireNonNull(getClass().getResource("About.fxml"))));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
 
-    @FXML
-    public void sceneButtonClicked1(ActionEvent actionEvent) {
-        // button for top left menu
+    public ObservableList<Task> getPeople() {
+        ObservableList<Task> people = FXCollections.observableArrayList();
+        people.add(new Task
+                ("Mount TV's",
+                        "Need to finish before my Wife's boyfriend beats me",
+                        LocalDate.of(2001, 12, 17)));
+        people.add(new Task
+                ("Cook for Babushka",
+                        "The family says \"I owe them a favor\"",
+                        LocalDate.of(1997, 10, 1)));
+        people.add(new Task
+                ("Call the Governor",
+                        "IDK just been told to give them a call...",
+                        LocalDate.of(1999, 1, 21)));
+
+        return people;
     }
 
-    @FXML
-    public void sceneButtonClicked2(ActionEvent actionEvent) {
-        // button for middle left menu
+    public void initialize(URL url, ResourceBundle rb) {
+
+        taskColumn.setCellValueFactory(new PropertyValueFactory<>("task"));
+        taskDescriptionColumn.setCellValueFactory(new PropertyValueFactory<>("taskDescription"));
+        dueDateColumn.setCellValueFactory(ToDoController::call);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M/dd/yyyy");
+        dueDateColumn.setCellFactory(birthDateColumn -> new TableCell<>() {
+            @Override
+            protected void updateItem(LocalDate item, boolean empty) {
+                super.updateItem(item, empty);
+
+                if (item == null || empty) {
+                    setText(null);
+                    setStyle("");
+                } else setText(formatter.format(item));
+            }
+        });
+
+        tableView.setItems(getPeople());
+
+        tableView.setEditable(true);
     }
 
-    @FXML
-    public void sceneButtonClicked3(ActionEvent actionEvent) {
-        // button for middle right menu
+    public void buttonAdd(ActionEvent actionEvent) {
+        Task t = new Task(textFieldTask.getText(), textFieldDescription.getText(), datePickerField.getValue());
+        tableView.getItems().add(t);
     }
-
-    @FXML
-    public void sceneButtonClicked4(ActionEvent actionEvent) {
-        // button for top right menu
-    }
-
 }
