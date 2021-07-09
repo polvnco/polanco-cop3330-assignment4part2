@@ -31,6 +31,10 @@ public class ToDoController implements Initializable {
     public TextField textFieldTask;
     public TextField textFieldDescription;
     public DatePicker datePickerField;
+    @FXML
+    public ComboBox<String> choiceBoxData;
+    @FXML
+    public TextArea taSummary;
     private Stage stage;
     private Scene scene;
     private Parent root;
@@ -42,6 +46,8 @@ public class ToDoController implements Initializable {
     private TableColumn<Task, String> taskDescriptionColumn;
     @FXML
     private TableColumn<Task, LocalDate> dueDateColumn;
+    @FXML
+    private TableColumn<Task, String> choiceBoxColumn;
 
     private static ObjectProperty call(TableColumn.CellDataFeatures<Task, LocalDate> cellData) {
         return cellData.getValue().dueDateProperty();
@@ -88,26 +94,25 @@ public class ToDoController implements Initializable {
         people.add(new Task
                 ("Mount TV's",
                         "Need to finish before my Wife's boyfriend beats me",
-                        LocalDate.of(2001, 12, 17)));
+                        "Complete", LocalDate.of(2001, 12, 17)));
         people.add(new Task
                 ("Cook for Babushka",
                         "The family says \"I owe them a favor\"",
-                        LocalDate.of(1997, 10, 1)));
+                        "Complete", LocalDate.of(1997, 10, 1)));
         people.add(new Task
                 ("Call the Governor",
                         "IDK just been told to give them a call...",
-                        LocalDate.of(1999, 1, 21)));
+                        "Complete", LocalDate.of(1999, 1, 21)));
 
         return people;
     }
-
+    @Override
     public void initialize(URL url, ResourceBundle rb) {
-
         taskColumn.setCellValueFactory(new PropertyValueFactory<>("task"));
         taskDescriptionColumn.setCellValueFactory(new PropertyValueFactory<>("taskDescription"));
         dueDateColumn.setCellValueFactory(ToDoController::call);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M/dd/yyyy");
-        dueDateColumn.setCellFactory(birthDateColumn -> new TableCell<>() {
+        dueDateColumn.setCellFactory(taskDateColumn -> new TableCell<>() {
             @Override
             protected void updateItem(LocalDate item, boolean empty) {
                 super.updateItem(item, empty);
@@ -119,15 +124,28 @@ public class ToDoController implements Initializable {
             }
         });
 
-        tableView.setItems(getPeople());
 
+
+        choiceBoxColumn.setCellValueFactory(new PropertyValueFactory<>("Completion"));
+
+
+        choiceBoxData.getItems().add("Complete");
+        choiceBoxData.getItems().add("Not Complete");
+
+        tableView.setItems(getPeople());
         tableView.setEditable(true);
+
     }
 
     public void buttonAdd(ActionEvent actionEvent) {
-        Task t = new Task(textFieldTask.getText(), textFieldDescription.getText(), datePickerField.getValue());
+        String value = choiceBoxData.getValue();
+        Task t =
+                new Task
+                        (
+                                textFieldTask.getText(),
+                                textFieldDescription.getText(),
+                                value, datePickerField.getValue());
         tableView.getItems().add(t);
+        System.out.println(value);
     }
 }
-
-//testing gitfr
