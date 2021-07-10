@@ -31,10 +31,9 @@ public class ToDoController implements Initializable {
     public TextField textFieldTask;
     public TextField textFieldDescription;
     public DatePicker datePickerField;
+
     @FXML
     public ComboBox<String> choiceBoxData;
-    @FXML
-    public TextArea taSummary;
     private Stage stage;
     private Scene scene;
     private Parent root;
@@ -48,6 +47,7 @@ public class ToDoController implements Initializable {
     private TableColumn<Task, LocalDate> dueDateColumn;
     @FXML
     private TableColumn<Task, String> choiceBoxColumn;
+
 
     private static ObjectProperty call(TableColumn.CellDataFeatures<Task, LocalDate> cellData) {
         return cellData.getValue().dueDateProperty();
@@ -108,6 +108,13 @@ public class ToDoController implements Initializable {
     }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        tableView = new TableView<Task>();
+        taskColumn = new TableColumn<>();
+        taskDescriptionColumn = new TableColumn<>();
+        dueDateColumn = new TableColumn<>();
+        choiceBoxColumn = new TableColumn<>();
+        choiceBoxData = new ComboBox<>();
+        tableView.setEditable(true);
         taskColumn.setCellValueFactory(new PropertyValueFactory<>("task"));
         taskDescriptionColumn.setCellValueFactory(new PropertyValueFactory<>("taskDescription"));
         dueDateColumn.setCellValueFactory(ToDoController::call);
@@ -124,8 +131,6 @@ public class ToDoController implements Initializable {
             }
         });
 
-
-
         choiceBoxColumn.setCellValueFactory(new PropertyValueFactory<>("Completion"));
 
 
@@ -133,7 +138,6 @@ public class ToDoController implements Initializable {
         choiceBoxData.getItems().add("Not Complete");
 
         tableView.setItems(getPeople());
-        tableView.setEditable(true);
 
     }
 
