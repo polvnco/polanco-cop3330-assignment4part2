@@ -15,30 +15,22 @@ import java.util.Objects;
 
 public class ToDo extends Application {
 
-
-
-
-
-
     @Override
     public void start(Stage stage) {
         try {
-
             /* create scene for when building and running app, opens first scene specified */
-
             Parent root = FXMLLoader.load((Objects.requireNonNull(getClass().getResource("ToDo.fxml"))));
             Scene scene = new Scene(root);
             stage.setScene(scene);
+            // title of application
             stage.setTitle("To-Do Something...");
             stage.show();
-
 
         } catch (IOException e) {
             e.printStackTrace();
         }
 
     }
-
 
     public static void main(String[] args) {
         launch(args);

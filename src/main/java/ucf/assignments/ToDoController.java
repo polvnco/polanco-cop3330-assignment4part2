@@ -31,22 +31,21 @@ public class ToDoController implements Initializable {
     public TextField textFieldTask;
     public TextField textFieldDescription;
     public DatePicker datePickerField;
-
-    @FXML
-    public ComboBox<String> choiceBoxData;
     private Stage stage;
     private Scene scene;
     private Parent root;
     @FXML
-    private TableView<Task> tableView;
+    private TableView<Task> tableView = new TableView<>();
     @FXML
-    private TableColumn<Task, String> taskColumn;
+    private TableColumn<Task, String> taskColumn = new TableColumn<>();
     @FXML
-    private TableColumn<Task, String> taskDescriptionColumn;
+    private TableColumn<Task, String> taskDescriptionColumn = new TableColumn<>();
     @FXML
-    private TableColumn<Task, LocalDate> dueDateColumn;
+    private TableColumn<Task, LocalDate> dueDateColumn = new TableColumn<>();
     @FXML
-    private TableColumn<Task, String> choiceBoxColumn;
+    private TableColumn<Task, String> choiceBoxColumn = new TableColumn<>();
+    @FXML
+    public ComboBox<String> choiceBoxData = new ComboBox<>();
 
 
     private static ObjectProperty call(TableColumn.CellDataFeatures<Task, LocalDate> cellData) {
@@ -54,7 +53,7 @@ public class ToDoController implements Initializable {
     }
 
 
-    // lines 77 - 126 are simply for getting the GUI buttons to work when creating GUI mockup with Scene Builder
+    // lines 59 - 89 are simply for getting the GUI buttons to work when creating GUI mockup with Scene Builder
     // ========================================================================================================
 
     public void switchToToDoScene(ActionEvent event) throws IOException {
@@ -106,19 +105,17 @@ public class ToDoController implements Initializable {
 
         return people;
     }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        tableView = new TableView<Task>();
-        taskColumn = new TableColumn<>();
-        taskDescriptionColumn = new TableColumn<>();
-        dueDateColumn = new TableColumn<>();
-        choiceBoxColumn = new TableColumn<>();
-        choiceBoxData = new ComboBox<>();
+        // this would allow the TableView cells to become editable
         tableView.setEditable(true);
+
+        // lines 115 - 130 are used to make the new values be inserted into the TableView by their specific property
         taskColumn.setCellValueFactory(new PropertyValueFactory<>("task"));
         taskDescriptionColumn.setCellValueFactory(new PropertyValueFactory<>("taskDescription"));
         dueDateColumn.setCellValueFactory(ToDoController::call);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M/dd/yyyy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         dueDateColumn.setCellFactory(taskDateColumn -> new TableCell<>() {
             @Override
             protected void updateItem(LocalDate item, boolean empty) {
@@ -130,26 +127,25 @@ public class ToDoController implements Initializable {
                 } else setText(formatter.format(item));
             }
         });
-
         choiceBoxColumn.setCellValueFactory(new PropertyValueFactory<>("Completion"));
 
-
+        // labels for ComboBox options
         choiceBoxData.getItems().add("Complete");
         choiceBoxData.getItems().add("Not Complete");
 
+        // fills in table with preloaded values
         tableView.setItems(getPeople());
-
     }
 
     public void buttonAdd(ActionEvent actionEvent) {
-        String value = choiceBoxData.getValue();
-        Task t =
-                new Task
+        // controls what the values the button will have when the button is clicked / touched
+        Task t = new Task
                         (
                                 textFieldTask.getText(),
                                 textFieldDescription.getText(),
-                                value, datePickerField.getValue());
+                                choiceBoxData.getValue(),
+                                datePickerField.getValue()
+                        );
         tableView.getItems().add(t);
-        System.out.println(value);
     }
 }

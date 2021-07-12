@@ -2,31 +2,33 @@
 'https://plantuml.com/class-diagram
 
 class ToDo{
-    + main (args : String[]) : void
     + start (stage : Stage) : void
+    + main (args : String[]) : void
 }
 
 class ToDoController{
-    + getTask () : String
-    + setTask (task : String) : void
-    + getTaskDescription () : String
-    + setTaskDescription (taskDescription : String) : void
-    + isCompletion () : boolean
-    + getTaskDate () : String
-    + addButtonClicked ()
+    + choiceBoxData : ComboBox<String>
+    - choiceBoxColumn : TableColumn<Task, String>
+    - dueDateColumn : TableColumn<Task, LocalDate>
+    - taskDescriptionColumn : TableColumn<Task, String>
+    - taskColumn : TableColumn<Task, String>
+    - tableView : TableView<Task>
     - root : Parent
     - scene : Scene
     - stage : Stage
+    + datePickerField : DatePicker
+    + textFieldDescription : TextField
+    + textFieldTask : TextField
     + pane : Pane
     --
+    - call (cellData : CellDataFeatures<Task, LocalDate>) : ObjectProperty
     + switchToToDoScene (event : ActionEvent) : void
     + switchToAllListScene (event : ActionEvent) : void
     + switchToSettings (event : ActionEvent) : void
     + switchToAbout (event : ActionEvent) : void
-    + sceneButtonClicked1 (actionEvent : ActionEvent) : void
-    + sceneButtonClicked2 (actionEvent : ActionEvent) : void
-    + sceneButtonClicked3 (actionEvent : ActionEvent) : void
-    + sceneButtonClicked4 (actionEvent : ActionEvent) : void
+    + getPeople () : ObservableList<Task>
+    + initialize (url : URL, rb : ResourceBundle) : void
+    + buttonAdd (actionEvent : ActionEvent) : void
 }
 
 javafx.Application <|-- ToDo
